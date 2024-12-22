@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @AppStorage("onboarding") var isonboardingViewActive: Bool = false
+    @State private var isAnimating : Bool = false
     var body: some View {
         VStack {
             //MARK: HEADER
@@ -19,6 +20,14 @@ struct HomeView: View {
                     .resizable()
                     .scaledToFit()
                     .padding()
+                    .offset(y: isAnimating ? 35 : -35)
+                    .animation(
+                        Animation
+                            .easeOut(duration: 4)
+                            .repeatForever()
+                        ,value: isAnimating
+                        
+                    )
             }
             
             //MARK: CENTER
@@ -43,6 +52,13 @@ struct HomeView: View {
                 .buttonBorderShape(.capsule)
                 .controlSize(.large)
         }//: Vstack
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2 , execute:  {
+                isAnimating = true
+            }
+            
+            )
+        })
     }
 }
 

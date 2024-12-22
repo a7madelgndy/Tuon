@@ -12,6 +12,9 @@ struct OnBoardingView: View {
     
     @State private var buttonWidth : Double = UIScreen.main.bounds.width - 80
     @State private var buttonOffset: CGFloat = 0
+    @State private var isAnimating: Bool = false
+    @State private var imageOffset: CGSize = .zero
+    @State private var headerText: String = "Share"
     var body: some View {
         ZStack {
             Color("ColorBlue")
@@ -21,7 +24,7 @@ struct OnBoardingView: View {
                 Spacer()
                 //MARK: HEADER
                 VStack(spacing: 0){
-                    Text("Share")
+                    Text(headerText)
                         .font(.system(size: 60))
                         .fontWeight(.heavy)
                         .foregroundStyle(.white)
@@ -36,13 +39,34 @@ struct OnBoardingView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal , 10)
                 }//: HEADER
-             
+                .opacity(isAnimating ? 1 : 0)
+                .offset(y:isAnimating ? 0 : -40)
+                .animation(.easeIn(duration: 1),value: isAnimating)
                //MARK: CENTER
                 ZStack {
                     CircleGroup(Color: .white, opacity: 0.2)
                     Image("character-1")
                         .resizable()
                         .scaledToFit()
+                        .opacity(isAnimating ? 1 : 0)
+                        .offset(x: imageOffset.width * 1.2, y:0)
+                        .animation(.easeInOut(duration: 0.5), value: isAnimating )
+                        .gesture(
+                            DragGesture()
+                                .onChanged{ gesture in
+                                  
+                                        if abs(imageOffset.width) <= 150 {
+                                            imageOffset = gesture.translation
+                                            headerText = "Love"
+                                        }
+                                }
+                                .onEnded {_ in
+                                    
+                                        imageOffset = .zero
+                                        headerText = "Share"
+                                }
+                        ).animation(Animation.easeInOut(duration: 1) , value:  imageOffset)
+                    //: Gesture
                 }//:CENTER
                 Spacer()
               //MARK: Footer
@@ -91,17 +115,18 @@ struct OnBoardingView: View {
                                         buttonOffset <= buttonWidth-80{
                                             buttonOffset = gesture.translation.width
                                         }
-                                        
                                     }
-                                    .onEnded({ _ in
-                                        if buttonOffset > buttonWidth/2{
-                                            buttonOffset = buttonWidth - 80
-                                            isonboardingViewActive = false
-                                        }else {
-                                            buttonOffset = 0
+                                    .onEnded { _ in
+                                        withAnimation(Animation.easeOut(duration: 1)) {
+                                            if buttonOffset > buttonWidth / 2 {
+                                                buttonOffset = buttonWidth - 80
+                                                    isonboardingViewActive = false
+                                                
+                                            }else {
+                                                buttonOffset = 0
+                                            }
                                         }
-                                   
-                                    })
+                                    }
                             )//:: Gesture
                      
                     Spacer()//: Hstack
@@ -109,12 +134,17 @@ struct OnBoardingView: View {
                 }//:Footer.
                 .frame(width : buttonWidth , height: 80 , alignment: .center)
                 .padding()
+                .opacity(isAnimating ? 1 : 0)
+                .offset(y:isAnimating ? 0 : 40 )
+                .animation(.easeInOut(duration: 1), value: isAnimating)
              //
             }
         
             
         }//: ZSTACK
-        
+        .onAppear{
+            isAnimating = true
+        }
     }
 }
 
