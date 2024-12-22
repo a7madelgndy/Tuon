@@ -13,6 +13,8 @@
 		159341D02D183240007B1314 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159341CF2D183240007B1314 /* Preview Assets.xcassets */; };
 		159341D82D183F3F007B1314 /* chimeup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 159341D62D183F3F007B1314 /* chimeup.mp3 */; };
 		159341D92D183F3F007B1314 /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 159341D72D183F3F007B1314 /* success.m4a */; };
+		159341E12D18478C007B1314 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159341E02D18478C007B1314 /* OnBoardingView.swift */; };
+		159341E42D1847B0007B1314 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159341E32D1847B0007B1314 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		159341D62D183F3F007B1314 /* chimeup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chimeup.mp3; sourceTree = "<group>"; };
 		159341D72D183F3F007B1314 /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
 		159341DF2D1846F9007B1314 /* Tu-on-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tu-on-Info.plist"; sourceTree = SOURCE_ROOT; };
+		159341E02D18478C007B1314 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		159341E32D1847B0007B1314 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +92,9 @@
 		159341DC2D1841F4007B1314 /* Screens  */ = {
 			isa = PBXGroup;
 			children = (
+				159341E02D18478C007B1314 /* OnBoardingView.swift */,
 				159341CA2D18323E007B1314 /* ContentView.swift */,
+				159341E32D1847B0007B1314 /* HomeView.swift */,
 			);
 			path = "Screens ";
 			sourceTree = "<group>";
@@ -179,6 +185,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				159341E12D18478C007B1314 /* OnBoardingView.swift in Sources */,
+				159341E42D1847B0007B1314 /* HomeView.swift in Sources */,
 				159341CB2D18323E007B1314 /* ContentView.swift in Sources */,
 				159341C92D18323E007B1314 /* Tu_onApp.swift in Sources */,
 			);
