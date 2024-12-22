@@ -41,6 +41,7 @@ struct HomeView: View {
             
             //MARK: FOOTER
             Button {
+                playSound(sound: "success", type: "m4a")
                 isonboardingViewActive = true
             } label: {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")

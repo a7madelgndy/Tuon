@@ -15,6 +15,9 @@ struct OnBoardingView: View {
     @State private var isAnimating: Bool = false
     @State private var imageOffset: CGSize = .zero
     @State private var headerText: String = "Share"
+    @State private var indicatorOpacity : Double = 1.0
+    
+    let hapticFeedback = UINotificationFeedbackGenerator()
     var body: some View {
         ZStack {
             Color("ColorBlue")
@@ -28,6 +31,8 @@ struct OnBoardingView: View {
                         .font(.system(size: 60))
                         .fontWeight(.heavy)
                         .foregroundStyle(.white)
+                        .transition(.opacity)
+                        .id(headerText)
                         
                     Text("""
                          It's not how much we give but
@@ -45,11 +50,15 @@ struct OnBoardingView: View {
                //MARK: CENTER
                 ZStack {
                     CircleGroup(Color: .white, opacity: 0.2)
+                        .blur(radius: abs(imageOffset.width / 5))
+                        .offset(x: imageOffset.width * -1)
+                        .animation(.easeOut(duration: 1), value: imageOffset)
                     Image("character-1")
                         .resizable()
                         .scaledToFit()
                         .opacity(isAnimating ? 1 : 0)
                         .offset(x: imageOffset.width * 1.2, y:0)
+                        .rotationEffect(.degrees(Double(imageOffset.width/20 )))
                         .animation(.easeInOut(duration: 0.5), value: isAnimating )
                         .gesture(
                             DragGesture()
@@ -57,17 +66,33 @@ struct OnBoardingView: View {
                                   
                                         if abs(imageOffset.width) <= 150 {
                                             imageOffset = gesture.translation
-                                            headerText = "Love"
+                                            withAnimation(.linear(duration: 0.25)) {
+                                                indicatorOpacity = 0
+                                                headerText = "Love"
+                                            }
                                         }
                                 }
                                 .onEnded {_ in
-                                    
                                         imageOffset = .zero
+                                    withAnimation(.linear(duration: 0.25)) {
+                                        indicatorOpacity = 1
                                         headerText = "Share"
+                                    };
                                 }
                         ).animation(Animation.easeInOut(duration: 1) , value:  imageOffset)
                     //: Gesture
                 }//:CENTER
+                .overlay (
+                    Image(systemName: "arrow.left.and.right.circle")
+                        .font(.system(size: 44 , weight: .ultraLight))
+                        .foregroundStyle(.white)
+                        .offset(y: 15)
+                        .opacity(isAnimating ? 0.8 : 0)
+                        .animation(.easeOut(duration: 2).delay(2), value: isAnimating)
+                        .opacity(indicatorOpacity)
+
+                    ,alignment: .bottom
+                )
                 Spacer()
               //MARK: Footer
                 ZStack{
@@ -119,10 +144,13 @@ struct OnBoardingView: View {
                                     .onEnded { _ in
                                         withAnimation(Animation.easeOut(duration: 1)) {
                                             if buttonOffset > buttonWidth / 2 {
+                                                hapticFeedback.notificationOccurred(.success)
+                                                playSound(sound: "chimeup", type: "mp3")
                                                 buttonOffset = buttonWidth - 80
                                                     isonboardingViewActive = false
                                                 
                                             }else {
+                                                hapticFeedback.notificationOccurred(.warning)
                                                 buttonOffset = 0
                                             }
                                         }
@@ -145,6 +173,7 @@ struct OnBoardingView: View {
         .onAppear{
             isAnimating = true
         }
+        .preferredColorScheme(.dark)
     }
 }
 

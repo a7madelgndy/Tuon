@@ -16,6 +16,7 @@
 		159341E12D18478C007B1314 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159341E02D18478C007B1314 /* OnBoardingView.swift */; };
 		159341E42D1847B0007B1314 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159341E32D1847B0007B1314 /* HomeView.swift */; };
 		159341E62D186D74007B1314 /* CircleGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159341E52D186D74007B1314 /* CircleGroup.swift */; };
+		159341EA2D18B62D007B1314 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159341E92D18B62C007B1314 /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		159341E02D18478C007B1314 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		159341E32D1847B0007B1314 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		159341E52D186D74007B1314 /* CircleGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGroup.swift; sourceTree = "<group>"; };
+		159341E92D18B62C007B1314 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		159341DE2D184219007B1314 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				159341E92D18B62C007B1314 /* AudioPlayer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				159341E12D18478C007B1314 /* OnBoardingView.swift in Sources */,
 				159341E42D1847B0007B1314 /* HomeView.swift in Sources */,
 				159341E62D186D74007B1314 /* CircleGroup.swift in Sources */,
+				159341EA2D18B62D007B1314 /* AudioPlayer.swift in Sources */,
 				159341CB2D18323E007B1314 /* ContentView.swift in Sources */,
 				159341C92D18323E007B1314 /* Tu_onApp.swift in Sources */,
 			);
